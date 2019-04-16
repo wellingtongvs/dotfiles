@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# load Xresources file
+/usr/bin/xrdb -merge $HOME/.Xresources
+
+# set keyboard layout
+setxkbmap -layout "br"
+
+# remove annoying beeps
+/usr/bin/xset -b
+
+# set up dual monitor configuration
+sh ${HOME}/.screenlayout/dual.sh
+
+# launch i3wm
+exec /usr/bin/i3

@@ -1,0 +1,40 @@
+""" GENERAL SETTINGS
+" encoding
+set encoding=utf-8                            " set encoding to utf-8
+
+" indentation
+set smarttab                                  " insert 'tabstop' number of spaces on tab
+set tabstop=2                                 " indent using two spaces
+set expandtab                                 " converts tabs to spaces
+set autoindent                                " new lines inherit indentation of previous lines
+filetype plugin indent on                     " enable file-type specific indentation rules
+
+" color
+colo desert                                   " desert colorscheme
+syntax on                                     " syntax highlighting
+set hlsearch                                  " search highlighting
+
+" search
+set ignorecase                                " ignore case when searching 
+set smartcase                                 " switch to case-sensitive when search term contains uppercase letter
+
+" text rendering
+set wrap                                      " line wrapping
+set list                                      " highlight whitespaces
+set listchars=tab:>.,trail:.,extends:#,nbsp:. " custom highlighting of whitespaces
+
+" user interface
+set number                                    " show current line number
+set relativenumber                            " show line numbers relative to current line
+set noerrorbells                              " disable beep
+set mouse=a                                   " enable mouse (a necessary sacrifice)
+set confirm                                   " confirmation dialog when closing unsaved file
+
+" misc
+set history=1000                              " increase history size
+set undolevels=1000                           " increase times you can undo
+
+""" KEY BINDINGS
+" tab indents, shift + tab de-indents
+nnoremap <Tab>    >>
+nnoremap <S-Tab>  <<

@@ -1,0 +1,81 @@
+! *********************************************
+! defining colors
+! *********************************************
+! normal
+#define black0    #000000
+#define red0      #AA0000
+#define green0    #00AA00
+#define yellow0   #AA5500
+#define blue0     #0000AA
+#define magenta0  #AA00AA
+#define cyan0     #00AAAA
+#define white0    #FFFFFF
+
+! bright
+#define black1    #555555
+#define red1      #FF5555
+#define green1    #55FF55
+#define yellow1   #FFFF55
+#define blue1     #5555FF
+#define magenta1  #FF55FF
+#define cyan1     #55FFFF
+#define white1    #AAAAAA
+
+! *********************************************
+! rxvt-unicode
+! *********************************************
+URxvt*termName        : xterm-256color
+
+! define font style
+URxvt*font            : xft:Monospace::pixelsize=12
+URxvt*boldFont        : xft:Monospace:bold:pixelsize=12
+URxvt*italicFont      : xft:Monospace:italic:pixelsize=12
+
+! define firefox as default browser for opening urls
+URxvt.perl-ext-common : default,matcher
+URxvt.urllauncher     : firefox
+URxvt.matcher.button  : 1
+
+! define scroll options
+URxvt*scrollBar_right : true
+URxvt*scrollstyle     : plain
+
+! URxvt colors
+URxvt*background      : [80]black0
+URxvt*foreground      : white0
+! black
+URxvt*color0          : black0
+URxvt*color8          : black1
+! red
+URxvt*color1          : red0
+URxvt*color9          : red1
+! green
+URxvt*color2          : green0
+URxvt*color10         : green1
+! yellow
+URxvt*color3          : yellow0
+URxvt*color11         : yellow1
+! blue
+URxvt*color4          : blue0
+URxvt*color12         : blue1
+! magenta
+URxvt*color5          : magenta0
+URxvt*color13         : magenta1
+! cyan
+URxvt*color6          : cyan0
+URxvt*color14         : cyan1
+! white
+URxvt*color7          : white0
+URxvt*color15         : white1
+
+!define transparency options (real transparency)
+URxvt*depth           : 32
+
+! *********************************************
+! rofi
+! *********************************************
+
+rofi.combi-modi       : window,drun,ssh
+rofi.theme            : lb
+rofi.font             : hack 10
+rofi.modi             : combi

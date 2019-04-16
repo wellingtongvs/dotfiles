@@ -1,0 +1,13 @@
+#
+# ~/.bash_profile
+#
+#
+
+# load bashrc
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# start X session
+if [[ "$(tty)" == "/dev/tty1" ]]
+then
+        startx
+fi

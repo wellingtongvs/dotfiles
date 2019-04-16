@@ -1,0 +1,30 @@
+#
+# ~/.bashrc
+#
+
+# add ~/bin to path
+if [ -d "$HOME/bin" ]
+then
+        PATH=$PATH:~/bin
+fi
+
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# custom bash prompt
+PS1="\[\033[38;5;198m\]\A\[$(tput sgr0)\]\[\033[38;5;255m\] \u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;198m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;255m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+
+# ssh-agent
+SSHPID=`ps x|grep -c "[s]sh-agent"`
+if (( $SSHPID == 0 ))
+then
+    ssh-agent | head -n2  > ~/.ssh-env
+    source ~/.ssh-env
+    ssh-add -t 10900
+else
+    source ~/.ssh-env
+fi
+
+# aliases
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'

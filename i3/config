@@ -1,0 +1,232 @@
+###############################################
+################### GENERAL ################### 
+###############################################
+# set basic color macros
+# basic
+set $black0          #000000
+set $red0            #AA0000
+set $green0          #00AA00
+set $yellow0         #AA5500
+set $blue0           #0000AA
+set $magenta0        #AA00AA
+set $cyan0           #00AAAA
+set $white0          #FFFFFF
+
+# bright
+set $black1          #555555
+set $red1            #FF5555
+set $green1          #55FF55
+set $yellow1         #FFFF55
+set $blue1           #5555FF
+set $magenta1        #FF55FF
+set $cyan1           #55FFFF
+set $white1          #AAAAAA
+
+# set custom color macros
+set $rose            #FF0087
+
+# set workspaces
+set $WS1 1: web
+set $WS2 2: web-work
+set $WS3 3: terminals
+set $WS4 4: terminals
+set $WS5 5: comms
+set $WS6 6: terminals
+set $WS7 7: terminals
+set $WS8 8: terminals
+set $WS9 9: music
+set $WS10 10: mail
+
+# assigning workspaces to monitors
+workspace 1 output DP-2
+workspace 2 output DP-2
+workspace 3 output HDMI-1
+workspace 4 output DP-2
+workspace 5 output DP-2
+workspace 6 output HDMI-1
+workspace 7 output DP-2
+workspace 8 output HDMI-1
+workspace 9 output DP-2
+workspace 10 output DP-2
+
+# on startup
+exec --no-startup-id compton
+exec --no-startup-id nitrogen --restore
+
+# start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        position top
+        font xft:Monospace 10
+        tray_output primary
+        workspace_buttons yes
+        status_command i3status
+
+#       <colorclass>       <border>  <background>  <text>	
+colors {
+        background         $black0
+        statusline         $white0
+        separator          $cyan0
+
+        focused_workspace  $cyan0    $black1       $white0
+        active_workspace   $black0   $black0       $white0
+        inactive_workspace $cyan0    $black0       $cyan0
+        urgent_workspace   $red1     $red0         $white0
+}
+}
+
+##################################################
+################### PREFERENCES ################## 
+##################################################
+
+# set modifier key (windows key)
+set $mod Mod4
+
+# use mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# define default window font
+font xft:monospace 10
+
+################################################
+################### BINDSYMS ################### 
+################################################
+
+# start a terminal
+bindsym $mod+Return exec urxvt
+
+# start rofi
+bindsym --release $mod+d exec --no-startup-id rofi -show run
+
+# lock screen
+bindsym $mod+l exec ~/bin/i3-scrot-lock
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# reload Xresources config
+bindsym $mod+Shift+t exec xrdb ~/.Xresources
+
+# exit i3 (logs you out of your X session)
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) shutdown
+mode "$mode_system" {
+    bindsym l exec ~/bin/i3-scrot-lock
+    bindsym e exec i3-msg exit, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym p exec systemctl poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
+
+# for multimedia keyboards
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+################################################
+#################### COLORS ####################
+################################################
+
+#<colorclass>             <border>  <background>  <text>   <indicator>  <child_border>
+client.focused            $cyan0    $black1       $white0  $white0      $cyan0
+client.focused_inactive   $cyan0    $black0       $white0  $white0      $cyan0
+client.unfocused          $cyan0    $black0       $cyan0   $white0      $cyan0
+client.urgent             $red0     $red0         $white0  $white0      $red0
+client.placeholder        $black0   $black0       $white0  $white0      $cyan0
+client.background         $black0
