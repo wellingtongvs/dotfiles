@@ -3,8 +3,7 @@
 # set dotfiles path
 DOT_PATH=`dirname $(realpath $0)`
 
-if [ -f "/etc/arch-release" ]
-then
+if [ -f "/etc/arch-release" ]; then
         sudo pacman -S --noconfirm xorg xorg-xinit xorg-xrdb
         sudo pacman -S --noconfirm i3 rofi
         sudo pacman -S --noconfirm rxvt-unicode
@@ -15,7 +14,17 @@ then
         sudo pacman -S --noconfirm scrot
         sudo pacman -S --noconfirm openssh
         sudo pacman -S --noconfirm git
-        sudo pacman -S --noconfirm rofi
+elif [ -f "/etc/os-release" ]; then
+        sudo apt-get -y install xorg 
+        sudo apt-get -y install i3 rofi
+        sudo apt-get -y install rxvt-unicode
+        sudo apt-get -y install arandr
+        sudo apt-get -y install alsa-utils
+        sudo apt-get -y install compton nitrogen
+        sudo apt-get -y install firefox
+        sudo apt-get -y install scrot
+        sudo apt-get -y install openssh-client
+        sudo apt-get -y install git
 fi
 
 # create necessary directories if they don't exist

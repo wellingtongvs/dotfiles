@@ -27,9 +27,9 @@
 URxvt*termName        : xterm-256color
 
 ! define font style
-URxvt*font            : xft:Monospace::pixelsize=12
-URxvt*boldFont        : xft:Monospace:bold:pixelsize=12
-URxvt*italicFont      : xft:Monospace:italic:pixelsize=12
+URxvt*font            : xft:Monospace::pixelsize=14
+URxvt*boldFont        : xft:Monospace:bold:pixelsize=14
+URxvt*italicFont      : xft:Monospace:italic:pixelsize=14
 
 ! define firefox as default browser for opening urls
 URxvt.perl-ext-common : default,matcher
@@ -77,5 +77,5 @@ URxvt*depth           : 32
 
 rofi.combi-modi       : window,drun,ssh
 rofi.theme            : lb
-rofi.font             : hack 10
+rofi.font             : xft:Monospace 12
 rofi.modi             : combi
