@@ -96,7 +96,8 @@ font xft:monospace 10
 bindsym $mod+Return exec urxvt
 
 # start rofi
-bindsym --release $mod+d exec --no-startup-id rofi -show run
+bindsym --release $mod+d exec --no-startup-id rofi -show combi
+#bindsym --release $mod+d exec rofi 
 
 # lock screen
 bindsym $mod+l exec ~/bin/i3-scrot-lock
